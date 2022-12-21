@@ -16,7 +16,7 @@
                         <div class="form-group">
                             <label class="badge badge-success">Email</label>
                             <input type="email" v-model="dataUser.email" id="email" class="form-control"
-                                placeholder="Enter email" >
+                                placeholder="Enter email" required>
                             <small v-show="error.email">Email sudah digunakan!</small>
                         </div>
                         <div class="form-group">
@@ -63,7 +63,7 @@
                     "email": false,
                     "pass":false
                 },
-                repass: '',
+                repass: null,
                 inputan: '',
                 alert: false,
             }
@@ -83,8 +83,10 @@
                     this.error.pass = true
                     this.alert = false
                     console.log('pw tidak sesuai');    
-                    
-                } else if(this.inputan == '' || this.inputan == null){
+             
+                } 
+                
+                if(this.inputan == '' || this.inputan == null){
                     this.alert = true
                 } 
 
