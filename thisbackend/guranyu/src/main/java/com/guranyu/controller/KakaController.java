@@ -1,0 +1,52 @@
+package com.guranyu.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.guranyu.model.KartuKeluarga;
+import com.guranyu.service.IKakaService;
+
+@RestController
+@CrossOrigin(origins = "http://localhost:8080")
+//@CrossOrigin(origins = "http://192.168.137.88:8080/")
+@RequestMapping("/api/kaka")
+public class KakaController {
+
+	@Autowired
+	IKakaService kakaService;
+	
+	@PostMapping("/insert")
+	public KartuKeluarga insertKaka(@RequestBody KartuKeluarga kaka) {
+		return kakaService.insertKaka(kaka);
+	}
+	
+	@GetMapping("/getKK")
+	public List<KartuKeluarga> getAll(){
+		return kakaService.getAll();
+	}
+	
+	@PutMapping("/update/{id}")
+	public KartuKeluarga updateKaka(@PathVariable int id ,@RequestBody KartuKeluarga kaka) {
+		return kakaService.updateKaka(id, kaka);
+	}
+	
+	@DeleteMapping("/delete/{id}")
+	public KartuKeluarga deleteKaka(@PathVariable int id) {
+		return kakaService.deleteKaka(id);
+	}
+	
+	@GetMapping("/getById/{id}")
+	public KartuKeluarga getById(@PathVariable int id) {
+		return kakaService.getById(id);
+	}
+}
